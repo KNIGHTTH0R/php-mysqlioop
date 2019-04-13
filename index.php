@@ -27,17 +27,32 @@ if($mysqli->connect_errno){
 // $name = $mysqli->real_escape_string($_GET['user']);
 
 //prepare statement -> no need escape string
-$statement = $mysqli->prepare('INSERT INTO student (name, address) VALUES (?,?)');
-$statement->bind_param('ss', $name, $address);
+// $statement = $mysqli->prepare('INSERT INTO student (name, address) VALUES (?,?)');
+// $statement->bind_param('ss', $name, $address);
 
 //input parameter and execute
-$name = 'bani';
-$address = 'karawang';
-$statement->execute();
+// $name = 'bani';
+// $address = 'karawang';
+// $statement->execute();
+//
+// $name = 'boriel';
+// $address = 'bandung';
+// $statement->execute();
 
-$name = 'boriel';
-$address = 'bandung';
-$statement->execute();
+$sql = "SELECT * FROM student";
+$result = $mysqli->query($sql);
+
+if($result->num_rows > 0){
+  //data assosiative
+  // while($row = $result->fetch_assoc()){
+  //   echo $row['name'].' '.$row['address'].'<br>';
+  // }
+
+  //data object
+  while($row = $result->fetch_object()){
+    echo $row->name.' '.$row->address.'<br>';
+  }
+}
 
 $mysqli->close();
 
