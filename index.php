@@ -58,11 +58,23 @@ if($mysqli->connect_errno){
   // $sql = "DELETE FROM student WHERE name='anval'";
 
   // edit data
-  $sql = "UPDATE student SET name='anval' WHERE name='bori'";
-  $result = $mysqli->query($sql);
+  // $sql = "UPDATE student SET name='anval' WHERE name='bori'";
+  // $result = $mysqli->query($sql);
+  //
+  // if($result) echo 'success';
+  // else echo 'failed';
 
-  if($result) echo 'success';
-  else echo 'failed';
+  // select data with prepare statement
+  $name = 'khoirul';
+  $student = $mysqli->prepare("SELECT address FROM student WHERE name=?");
+  $student->bind_param('s', $name);
+  $student->execute();
+
+  $student->bind_result($new);
+
+  while($student->fetch()){
+    echo $new;
+  }
 
 $mysqli->close();
 
