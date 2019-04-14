@@ -39,20 +39,30 @@ if($mysqli->connect_errno){
 // $address = 'bandung';
 // $statement->execute();
 
-$sql = "SELECT * FROM student";
-$result = $mysqli->query($sql);
+// select data
+// $sql = "SELECT * FROM student";
 
-if($result->num_rows > 0){
+// if($result->num_rows > 0){
   //data assosiative
   // while($row = $result->fetch_assoc()){
   //   echo $row['name'].' '.$row['address'].'<br>';
   // }
 
   //data object
-  while($row = $result->fetch_object()){
-    echo $row->name.' '.$row->address.'<br>';
-  }
-}
+  // while($row = $result->fetch_object()){
+    // echo $row->name.' '.$row->address.'<br>';
+  // }
+// }
+
+  //delete data
+  // $sql = "DELETE FROM student WHERE name='anval'";
+
+  // edit data
+  $sql = "UPDATE student SET name='anval' WHERE name='bori'";
+  $result = $mysqli->query($sql);
+
+  if($result) echo 'success';
+  else echo 'failed';
 
 $mysqli->close();
 
